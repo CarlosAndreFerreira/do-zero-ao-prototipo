@@ -11,7 +11,7 @@ Versão online: <https://carlosandreferreira.github.io/do-zero-ao-prototipo/>
 - **Quero começar.** Continua a ler esta página: tem o roteiro, o modelo para a tua ideia e um exemplo completo.
 - **Quero escolher uma ferramenta.** Vai às [ferramentas, organizadas por objetivo](ferramentas.md).
 - **Quero continuar a aprender.** Vê os [cursos e listas recomendados](aprender-mais.md).
-- **Quero experimentar.** Abre a [demo do sorteio](https://carlosandreferreira.github.io/do-zero-ao-prototipo/demo/), com nomes fictícios. O código está em [demo/index.html](demo/index.html): é um único ficheiro que podes descarregar e abrir no browser.
+- **Quero experimentar.** Abre a [demo do sorteio](https://carlosandreferreira.github.io/do-zero-ao-prototipo/demo/), com nomes fictícios. O código está em [demo/index.html](https://github.com/CarlosAndreFerreira/do-zero-ao-prototipo/blob/main/demo/index.html): é um único ficheiro que podes descarregar e abrir no browser.
 
 ## O roteiro em cinco passos
 
@@ -79,4 +79,4 @@ Se um teste falhar, pede uma correção específica e repete o mesmo teste. Só 
 
 Última revisão: novembro de 2026. Conteúdo partilhado com a licença [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.pt): podes copiar e adaptar, desde que indiques a origem. O texto completo está em [LICENSE](LICENSE).
 
-Os testes da secção «Como testar» também existem em versão automática, em [tests/](tests/sorteio.test.mjs). Correm no GitHub a cada alteração; para os correr no teu computador, com o [Node.js](https://nodejs.org/) instalado: `node --test tests/*.test.mjs`.
+Os testes da secção «Como testar» também existem em versão automática, em [tests/](https://github.com/CarlosAndreFerreira/do-zero-ao-prototipo/blob/main/tests/sorteio.test.mjs). Correm no GitHub a cada alteração; para os correr no teu computador, com o [Node.js](https://nodejs.org/) instalado: `node --test tests/*.test.mjs`.
