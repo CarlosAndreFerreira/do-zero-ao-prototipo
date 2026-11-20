@@ -68,6 +68,13 @@ Antes de cada teste, diz em voz alta o que deveria acontecer. Cola um nome por l
 
 Se um teste falhar, pede uma correção específica e repete o mesmo teste. Só depois de tudo passar é que vale a pena mexer no visual.
 
+## Os diapositivos
+
+A apresentação do workshop, com o roteiro, o pedido do sorteio e os testes.
+
+- **[Ver em PDF](diapositivos/do-zero-ao-prototipo.pdf)**: abre no browser, sem precisar do PowerPoint.
+- **[Descarregar o PowerPoint](diapositivos/do-zero-ao-prototipo.pptx)**: o original editável, com os tempos e as dicas de apresentação nas notas de cada diapositivo. O último diapositivo é a checklist de preparação para quem apresenta.
+
 ## Cuidados
 
 - **Dados pessoais.** Não coles nomes, emails ou dados de clientes no pedido à IA. Usa exemplos fictícios para construir e testar.
@@ -77,6 +84,6 @@ Se um teste falhar, pede uma correção específica e repete o mesmo teste. Só 
 
 ## Sobre este repositório
 
-Última revisão: novembro de 2026. Conteúdo partilhado com a licença [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.pt): podes copiar e adaptar, desde que indiques a origem. O texto completo está em [LICENSE](LICENSE).
+Última revisão: novembro de 2026. Conteúdo partilhado com a licença [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.pt): podes copiar e adaptar, desde que indiques a origem. O texto completo está em [LICENSE](LICENSE). Os logótipos da Startup Forge Tondela e de outras organizações que aparecem nos diapositivos pertencem aos respetivos donos e não estão incluídos nesta licença.
 
 Os testes da secção «Como testar» também existem em versão automática, em [tests/](https://github.com/CarlosAndreFerreira/do-zero-ao-prototipo/blob/main/tests/sorteio.test.mjs). Correm no GitHub a cada alteração; para os correr no teu computador, com o [Node.js](https://nodejs.org/) instalado: `node --test tests/*.test.mjs`.
