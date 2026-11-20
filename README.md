@@ -68,6 +68,12 @@ Antes de cada teste, diz em voz alta o que deveria acontecer. Cola um nome por l
 
 Se um teste falhar, pede uma correção específica e repete o mesmo teste. Só depois de tudo passar é que vale a pena mexer no visual.
 
+## A camisola em 3D
+
+As camisolas sorteadas no workshop também viraram protótipo: a partir de duas fotografias, a IA ajudou a construir uma camisola «build» em 3D que podes rodar, aproximar e ver de frente e de costas.
+
+**[Ver a camisola em 3D](https://carlosandreferreira.github.io/tshirt-build-3d/)** · [código no GitHub](https://github.com/CarlosAndreFerreira/tshirt-build-3d)
+
 ## Os diapositivos
 
 A apresentação do workshop, com o roteiro, o pedido do sorteio e os testes.
