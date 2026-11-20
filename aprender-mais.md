@@ -4,7 +4,7 @@
 
 ## Da ideia ao protótipo
 
-- [easy-vibe](https://github.com/datawhalechina/easy-vibe): um percurso para principiantes, do problema ao protótipo. Começa pelo *Learning Map* e pela secção sobre protótipos. Está em inglês e espanhol.
+- [easy-vibe](https://github.com/datawhalechina/easy-vibe): um percurso para principiantes, do problema ao protótipo. Começa pelo *Learning Map* e pela secção sobre protótipos. O original é em chinês, com tradução para inglês, espanhol e outras línguas (ainda não há em português).
 
 ## Pôr IA dentro de uma aplicação
 

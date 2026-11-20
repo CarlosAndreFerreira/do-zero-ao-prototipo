@@ -8,14 +8,14 @@
   :root {
     --paper: #F3F5F8; --card: #FFFFFF; --ink: #17233A; --muted: #556072;
     --line: #D3D9E2; --forge: #C42127; --ember: #B85A0C; --ok: #1A7F52;
-    --stage: #17233A; --stage-ink: #FFFFFF; --stage-muted: #C9D1DD;
+    --stage: #17233A; --stage-ink: #FFFFFF; --stage-muted: #C9D1DD; --on-forge: #FFFFFF;
     color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
     :root {
       --paper: #10161F; --card: #18212D; --ink: #EEF2F7; --muted: #A7B1BF;
       --line: #2C3846; --forge: #FF6B6B; --ember: #F6A04D; --ok: #5FD39A;
-      --stage: #0B1017; --stage-ink: #FFFFFF; --stage-muted: #A7B1BF;
+      --stage: #0B1017; --stage-ink: #FFFFFF; --stage-muted: #A7B1BF; --on-forge: #10161F;
       color-scheme: dark;
     }
   }
@@ -23,6 +23,7 @@
   body { margin: 0; background: var(--paper); color: var(--ink);
     font: 17px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
   main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 48px; }
+  .back { display: inline-block; margin: 0 0 14px; color: var(--muted); font-size: 15px; }
   h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.1; margin: 0 0 6px; letter-spacing: -0.01em; }
   .lead { margin: 0 0 28px; color: var(--muted); max-width: 62ch; }
   .grid { display: grid; grid-template-columns: minmax(280px, 380px) 1fr; gap: 24px; align-items: start; }
@@ -35,9 +36,10 @@
   .hint { font-size: 15px; color: var(--muted); margin: 6px 0 18px; min-height: 1.5em; }
   .hint.warn { color: var(--ember); }
   button { font: inherit; font-weight: 700; border-radius: 10px; cursor: pointer; border: 1px solid transparent; }
-  .draw { width: 100%; padding: 14px; background: var(--forge); color: #fff; font-size: 1.15rem; }
+  .draw { width: 100%; padding: 14px; background: var(--forge); color: var(--on-forge); font-size: 1.15rem; }
   .draw:disabled { background: var(--line); color: var(--muted); cursor: not-allowed; }
   .row { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+  .ghost:disabled { opacity: .5; cursor: not-allowed; }
   .ghost { padding: 9px 12px; background: transparent; color: var(--ink); border-color: var(--line); font-weight: 600; font-size: 15px; }
   :focus-visible { outline: 3px solid var(--ember); outline-offset: 2px; }
   .stage { background: var(--stage); color: var(--stage-ink); border-radius: 18px; padding: 28px clamp(20px, 4vw, 44px);
@@ -61,6 +63,7 @@
 </head>
 <body>
 <main>
+  <a class="back" href="../">← Voltar ao guia «Do zero ao protótipo»</a>
   <h1>Sorteio de prémios</h1>
   <p class="lead">Cola os nomes, escreve o prémio da ronda e sorteia. Quem ganha sai da lista e não volta a sair nas rondas seguintes.</p>
 
@@ -74,10 +77,10 @@
       <input type="text" id="prize" value="Camisola" autocomplete="off">
       <p class="hint">Para sortear várias camisolas, carrega várias vezes.</p>
 
-      <button class="draw" id="draw" disabled>Sortear</button>
+      <button type="button" class="draw" id="draw" disabled>Sortear</button>
       <div class="row">
-        <button class="ghost" id="example">Usar nomes de exemplo</button>
-        <button class="ghost" id="reset">Recomeçar</button>
+        <button type="button" class="ghost" id="example">Usar nomes de exemplo</button>
+        <button type="button" class="ghost" id="reset">Recomeçar</button>
       </div>
     </section>
 
@@ -93,7 +96,7 @@
     </section>
   </div>
 
-  <p class="note">Esta página corre só no teu browser: os nomes não são enviados para lado nenhum e desaparecem quando a fechas. Na primeira extração a lista fica fechada; para a mudar, carrega em «Recomeçar».</p>
+  <p class="note">Esta página corre só no teu browser: os nomes não são enviados para lado nenhum e desaparecem quando a fechas. Depois do primeiro sorteio, a lista fica fechada; para a mudar, carrega em «Recomeçar».</p>
 </main>
 
 <script>
@@ -136,6 +139,7 @@ function refresh() {
     count.classList.toggle("warn", repeated > 0);
   }
   $("draw").disabled = left.length === 0;
+  $("example").disabled = $("names").readOnly;
   $("left").textContent = winners.length
     ? (left.length ? `Ainda ${left.length === 1 ? "falta 1 pessoa" : "faltam " + left.length + " pessoas"} por sortear.` : "Já não há nomes por sortear: todos ganharam um prémio.")
     : "";
