@@ -120,8 +120,9 @@ body.home .content { position: relative; }
 .content code { font-family: var(--mono); font-size: .88em; background: var(--surface-2); padding: .12em .4em; border-radius: 6px; }
 
 /* Página inicial: cabeçalho com gradiente */
-body.home .content::before {
-  content: ""; position: absolute; z-index: -1; inset: -40px -20px auto; height: 520px; pointer-events: none;
+body.home { position: relative; }
+body.home::before {
+  content: ""; position: absolute; z-index: -1; top: 0; left: 0; right: 0; height: 640px; pointer-events: none;
   background:
     radial-gradient(40% 60% at 18% 30%, var(--glow-1), transparent 70%),
     radial-gradient(35% 55% at 55% 20%, var(--glow-2), transparent 70%),
