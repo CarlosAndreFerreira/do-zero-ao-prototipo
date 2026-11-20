@@ -8,10 +8,10 @@ Versão online: <https://carlosandreferreira.github.io/do-zero-ao-prototipo/>
 
 ## Escolhe o teu caminho
 
-- **Quero começar.** Continua a ler esta página: tem o roteiro, o modelo para a tua ideia e um exemplo completo.
+- **Quero começar.** Continua a ler esta página: tem o [roteiro](#o-roteiro-em-cinco-passos), o modelo para a tua ideia e um exemplo completo.
 - **Quero escolher uma ferramenta.** Vai às [ferramentas, organizadas por objetivo](ferramentas.md).
 - **Quero continuar a aprender.** Vê os [cursos e listas recomendados](aprender-mais.md).
-- **Quero experimentar.** Abre a [demo do sorteio](https://carlosandreferreira.github.io/do-zero-ao-prototipo/demo/), com nomes fictícios. O código está em [demo/index.html](https://github.com/CarlosAndreFerreira/do-zero-ao-prototipo/blob/main/demo/index.html): é um único ficheiro que podes descarregar e abrir no browser.
+- **Quero experimentar.** Abre a [demo do sorteio](https://carlosandreferreira.github.io/do-zero-ao-prototipo/demo/), com nomes fictícios. O [código](https://github.com/CarlosAndreFerreira/do-zero-ao-prototipo/blob/main/demo/index.html) é um único ficheiro HTML.
 
 ## O roteiro em cinco passos
 
@@ -23,7 +23,7 @@ Versão online: <https://carlosandreferreira.github.io/do-zero-ao-prototipo/>
 | 4. Construir | Que pedido faço à IA para obter a primeira versão? | Um pedido com objetivo, regras e formato (está mais abaixo). |
 | 5. Testar | Que exemplo me diz se a primeira versão faz o que pedi? | Se a Ana ganha a camisola, não pode voltar a sair na ronda do souvenir. |
 
-**Não comeces pela ferramenta.** Se ainda estás a explicar a ideia, usa papel ou um chat. Se precisas de ver alguém a carregar num botão, faz uma página interativa. Só precisas de uma API quando a própria aplicação tem de pedir algo à IA enquanto alguém a usa. No sorteio, a IA constrói a página, mas quem sorteia é o browser.
+**Não comeces pela ferramenta.** Se ainda estás a explicar a ideia, usa papel ou um chat. Se queres mostrar como seria o ecrã, o [Stitch](https://stitch.google.com/) desenha-o a partir de uma frase. Se precisas de ver alguém a carregar num botão, faz uma página interativa. Só precisas de uma API quando a própria aplicação tem de pedir algo à IA enquanto alguém a usa. No sorteio, a IA constrói a página, mas quem sorteia é o browser.
 
 ## O modelo para a tua ideia
 

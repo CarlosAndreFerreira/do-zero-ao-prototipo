@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'pt-PT' }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{%- assign is_home = false -%}
+{%- if page.url == "/" or page.url == "/index.html" -%}{%- assign is_home = true -%}{%- endif %}
+<title>{% if is_home %}{{ site.title }} · Workshop Startup Forge Tondela{% else %}{{ page.title }} · {{ site.title }}{% endif %}</title>
+<meta name="description" content="{{ site.description }}">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f8fafd" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131314" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="{% if is_home %}{{ site.title }}{% else %}{{ page.title }}{% endif %}">
+<meta property="og:description" content="{{ site.description }}">
+<meta property="og:locale" content="pt_PT">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234285f4'/%3E%3Cstop offset='.55' stop-color='%239b72cb'/%3E%3Cstop offset='1' stop-color='%23d96570'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='9' fill='url(%23g)'/%3E%3Cpath d='M16 6l2.6 7.4L26 16l-7.4 2.6L16 26l-2.6-7.4L6 16l7.4-2.6z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+</head>
+<body class="{% if is_home %}home{% else %}inner{% endif %}">
+<a class="skip" href="#conteudo">Saltar para o conteúdo</a>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="{{ '/' | relative_url }}">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>Do zero ao protótipo</span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="{{ '/' | relative_url }}"{% if is_home %} aria-current="page"{% endif %}>Início</a>
+      <a href="{{ '/ferramentas.html' | relative_url }}"{% if page.url == "/ferramentas.html" %} aria-current="page"{% endif %}>Ferramentas</a>
+      <a href="{{ '/aprender-mais.html' | relative_url }}"{% if page.url == "/aprender-mais.html" %} aria-current="page"{% endif %}>Aprender</a>
+      <a class="nav-cta" href="{{ '/demo/' | relative_url }}">Abrir a demo</a>
+    </nav>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="toc" aria-labelledby="toc-title" hidden>
+    <p class="toc-title" id="toc-title">Nesta página</p>
+    <ol id="toc"></ol>
+  </aside>
+  <main id="conteudo" class="content">
+{{ content }}
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <p><strong>Do zero ao protótipo</strong> · Workshop Startup Forge Tondela, 21 de novembro de 2026</p>
+    <p>
+      <a href="https://creativecommons.org/licenses/by/4.0/deed.pt">CC BY 4.0</a> ·
+      <a href="https://github.com/CarlosAndreFerreira/do-zero-ao-prototipo">Código no GitHub</a> ·
+      Limites e preços mudam: confirma sempre na página oficial.
+    </p>
+  </div>
+</footer>
+<script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+</body>
+</html>

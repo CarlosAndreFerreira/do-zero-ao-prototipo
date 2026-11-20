@@ -13,18 +13,30 @@ Escolhe pelo que precisas de fazer, não pelo nome da ferramenta. Em cada objeti
 
 Os limites e preços mudam com frequência. Confirma sempre na página oficial antes de decidir.
 
+## Começa por aqui
+
+Se só tens cinco minutos, escolhe a linha que descreve o que precisas agora.
+
+| Preciso de… | Experimenta | Porquê |
+|---|---|---|
+| Explicar melhor a minha ideia | [Gemini](https://gemini.google.com/) | Conversa em português e ajuda-te a preencher o modelo. |
+| Mostrar como seria o ecrã | [Stitch](https://stitch.google.com/) | Desenha ecrãs de app ou site a partir de uma frase. |
+| Carregar num botão e ver funcionar | [Gemini Canvas](https://gemini.google.com/) | Escreve a página e mostra-a a funcionar ao lado. |
+| Usar IA sem enviar dados para fora | [Jan](https://jan.ai/) | Corre no teu computador, mesmo sem internet. |
+
 ## 1. Clarificar a ideia
 
 | Ferramenta | Tipo | Para quê |
 |---|---|---|
 | [Gemini](https://gemini.google.com/), [ChatGPT](https://chatgpt.com/) ou [Claude](https://claude.ai/) | Plano grátis | Reduzir a ideia a uma pessoa e uma ação; preencher o modelo. |
-| [NotebookLM](https://notebooklm.google/) | Grátis | Fazer perguntas sobre os teus próprios documentos (regulamentos, notas, estudos). |
+| [Gemini Notebook](https://notebook.google/) (antigo NotebookLM) | Grátis | Fazer perguntas sobre os teus próprios documentos (regulamentos, notas, estudos). |
 
-## 2. Criar uma página que podes experimentar
+## 2. Mostrar um ecrã ou criar uma página que podes experimentar
 
 | Ferramenta | Tipo | Para quê |
 |---|---|---|
 | [Gemini Canvas](https://gemini.google.com/) | Grátis | Pedir uma página e vê-la a funcionar no mesmo ecrã. Foi o que usámos no workshop. |
+| [Stitch](https://stitch.google.com/) | Grátis | Desenhar ecrãs de app ou site a partir de uma descrição ou de um esboço. Serve para mostrar a ideia; os botões ainda não funcionam. |
 | [Lovable](https://lovable.dev/) | Plano grátis | Protótipos com vários ecrãs, a partir de uma descrição. |
 | [Bolt.new](https://bolt.new/) | Plano grátis | Semelhante ao Lovable, com pré-visualização. |
 | [v0](https://v0.app/) | Plano grátis | Ecrãs e interfaces a partir de uma descrição. |
