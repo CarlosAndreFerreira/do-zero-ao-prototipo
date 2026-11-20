@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sorteio de prémios</title>
+<style>
+  :root {
+    --paper: #F3F5F8; --card: #FFFFFF; --ink: #17233A; --muted: #556072;
+    --line: #D3D9E2; --forge: #C42127; --ember: #B85A0C; --ok: #1A7F52;
+    --stage: #17233A; --stage-ink: #FFFFFF; --stage-muted: #C9D1DD;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #10161F; --card: #18212D; --ink: #EEF2F7; --muted: #A7B1BF;
+      --line: #2C3846; --forge: #FF6B6B; --ember: #F6A04D; --ok: #5FD39A;
+      --stage: #0B1017; --stage-ink: #FFFFFF; --stage-muted: #A7B1BF;
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink);
+    font: 17px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+  main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 48px; }
+  h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.1; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .lead { margin: 0 0 28px; color: var(--muted); max-width: 62ch; }
+  .grid { display: grid; grid-template-columns: minmax(280px, 380px) 1fr; gap: 24px; align-items: start; }
+  .panel { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  label { display: block; font-weight: 650; margin: 0 0 6px; }
+  textarea, input[type=text] { width: 100%; font: inherit; color: var(--ink); background: var(--paper);
+    border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+  textarea { min-height: 240px; resize: vertical; }
+  textarea[readonly] { opacity: .75; }
+  .hint { font-size: 15px; color: var(--muted); margin: 6px 0 18px; min-height: 1.5em; }
+  .hint.warn { color: var(--ember); }
+  button { font: inherit; font-weight: 700; border-radius: 10px; cursor: pointer; border: 1px solid transparent; }
+  .draw { width: 100%; padding: 14px; background: var(--forge); color: #fff; font-size: 1.15rem; }
+  .draw:disabled { background: var(--line); color: var(--muted); cursor: not-allowed; }
+  .row { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+  .ghost { padding: 9px 12px; background: transparent; color: var(--ink); border-color: var(--line); font-weight: 600; font-size: 15px; }
+  :focus-visible { outline: 3px solid var(--ember); outline-offset: 2px; }
+  .stage { background: var(--stage); color: var(--stage-ink); border-radius: 18px; padding: 28px clamp(20px, 4vw, 44px);
+    min-height: 300px; display: flex; flex-direction: column; justify-content: center; }
+  .stage .prize { color: var(--stage-muted); font-size: 1.2rem; margin: 0; }
+  .winner { font-size: clamp(2.6rem, 8vw, 6.2rem); font-weight: 800; line-height: 1.02; letter-spacing: -0.02em;
+    margin: 10px 0 14px; overflow-wrap: anywhere; }
+  .winner.empty { font-size: clamp(1.6rem, 3.4vw, 2.4rem); font-weight: 650; color: var(--stage-muted); }
+  .reveal { animation: reveal .45s ease-out; }
+  @keyframes reveal { from { transform: scale(.94); opacity: 0; } to { transform: none; opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { animation: none; } }
+  .stage .left { color: var(--stage-muted); margin: 0; }
+  h2 { font-size: 1.2rem; margin: 26px 0 10px; }
+  ol.history { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  ol.history li { display: flex; justify-content: space-between; gap: 16px; background: var(--card);
+    border: 1px solid var(--line); border-left: 5px solid var(--forge); border-radius: 10px; padding: 10px 14px; }
+  ol.history .p { color: var(--muted); }
+  .note { margin-top: 32px; font-size: 15px; color: var(--muted); max-width: 70ch; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } .stage { min-height: 220px; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Sorteio de prémios</h1>
+  <p class="lead">Cola os nomes, escreve o prémio da ronda e sorteia. Quem ganha sai da lista e não volta a sair nas rondas seguintes.</p>
+
+  <div class="grid">
+    <section class="panel" aria-label="Participantes e prémio">
+      <label for="names">Participantes, um nome por linha</label>
+      <textarea id="names" spellcheck="false" placeholder="Ana Martins&#10;Bruno Lopes&#10;Carla Sousa"></textarea>
+      <p class="hint" id="count" aria-live="polite">Ainda não há nomes.</p>
+
+      <label for="prize">Prémio desta ronda</label>
+      <input type="text" id="prize" value="Camisola" autocomplete="off">
+      <p class="hint">Para sortear várias camisolas, carrega várias vezes.</p>
+
+      <button class="draw" id="draw" disabled>Sortear</button>
+      <div class="row">
+        <button class="ghost" id="example">Usar nomes de exemplo</button>
+        <button class="ghost" id="reset">Recomeçar</button>
+      </div>
+    </section>
+
+    <section aria-label="Resultado">
+      <div class="stage">
+        <p class="prize" id="stagePrize">Ainda não houve sorteios</p>
+        <p class="winner empty" id="winner" aria-live="assertive">Cola os nomes para começar</p>
+        <p class="left" id="left"></p>
+      </div>
+      <h2>Prémios atribuídos</h2>
+      <ol class="history" id="history"></ol>
+      <p class="hint" id="historyEmpty">Os vencedores aparecem aqui, pela ordem em que saíram.</p>
+    </section>
+  </div>
+
+  <p class="note">Esta página corre só no teu browser: os nomes não são enviados para lado nenhum e desaparecem quando a fechas. Na primeira extração a lista fica fechada; para a mudar, carrega em «Recomeçar».</p>
+</main>
+
+<script>
+/*LOGIC-START*/
+function normalise(name) { return name.trim().replace(/\s+/g, " "); }
+function parseNames(text) {
+  const seen = new Map(); let repeated = 0;
+  for (const line of text.split(/\r?\n/)) {
+    const n = normalise(line);
+    if (!n) continue;
+    const key = n.toLocaleLowerCase("pt-PT");
+    if (seen.has(key)) repeated++; else seen.set(key, n);
+  }
+  return { names: [...seen.values()], repeated };
+}
+function randomIndex(n, cryptoObj) {
+  // Escolha uniforme entre 0 e n-1 sem enviesamento (amostragem por rejeição).
+  const max = 0x100000000, limit = max - (max % n), buf = new Uint32Array(1);
+  let x;
+  do { cryptoObj.getRandomValues(buf); x = buf[0]; } while (x >= limit);
+  return x % n;
+}
+function remaining(names, winners) {
+  const won = new Set(winners.map(w => w.name.toLocaleLowerCase("pt-PT")));
+  return names.filter(n => !won.has(n.toLocaleLowerCase("pt-PT")));
+}
+/*LOGIC-END*/
+
+const $ = id => document.getElementById(id);
+let winners = [];
+
+function refresh() {
+  const { names, repeated } = parseNames($("names").value);
+  const left = remaining(names, winners);
+  const count = $("count");
+  if (!names.length) { count.textContent = "Ainda não há nomes."; count.classList.remove("warn"); }
+  else {
+    count.textContent = `${names.length} ${names.length === 1 ? "pessoa" : "pessoas"} no sorteio` +
+      (repeated ? `; ${repeated} ${repeated === 1 ? "nome repetido ignorado" : "nomes repetidos ignorados"}.` : ".");
+    count.classList.toggle("warn", repeated > 0);
+  }
+  $("draw").disabled = left.length === 0;
+  $("left").textContent = winners.length
+    ? (left.length ? `Ainda ${left.length === 1 ? "falta 1 pessoa" : "faltam " + left.length + " pessoas"} por sortear.` : "Já não há nomes por sortear: todos ganharam um prémio.")
+    : "";
+  if (!winners.length) {
+    $("winner").textContent = names.length ? "Pronto para sortear" : "Cola os nomes para começar";
+  }
+}
+
+function draw() {
+  const { names } = parseNames($("names").value);
+  const left = remaining(names, winners);
+  if (!left.length) return;
+  const name = left[randomIndex(left.length, window.crypto)];
+  const prize = normalise($("prize").value) || "Prémio";
+  winners.push({ name, prize });
+  $("names").readOnly = true;
+
+  const w = $("winner");
+  w.classList.remove("empty", "reveal"); void w.offsetWidth;
+  w.textContent = name; w.classList.add("reveal");
+  $("stagePrize").textContent = `${prize}, ronda ${winners.length}`;
+
+  const li = document.createElement("li");
+  const a = document.createElement("span"); a.textContent = name;
+  const b = document.createElement("span"); b.className = "p"; b.textContent = prize;
+  li.append(a, b); $("history").append(li);
+  $("historyEmpty").hidden = true;
+  refresh();
+}
+
+function reset() {
+  if (winners.length && !confirm("Recomeçar apaga os prémios já atribuídos. Continuar?")) return;
+  winners = []; $("history").innerHTML = ""; $("historyEmpty").hidden = false;
+  $("names").readOnly = false; $("stagePrize").textContent = "Ainda não houve sorteios";
+  $("winner").className = "winner empty"; refresh();
+}
+
+$("names").addEventListener("input", refresh);
+$("draw").addEventListener("click", draw);
+$("reset").addEventListener("click", reset);
+$("example").addEventListener("click", () => {
+  if ($("names").readOnly) return;
+  $("names").value = ["Ana Martins", "Bruno Lopes", "Carla Sousa", "Diogo Pereira", "Eva Rodrigues", "Filipe Santos", "ana martins"].join("\n");
+  refresh();
+});
+refresh();
+</script>
+</body>
+</html>
